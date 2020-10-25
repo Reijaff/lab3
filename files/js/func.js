@@ -10,18 +10,13 @@ let str = "";
 
 func_v7 = function(){
 	let arr = new Array(10);
-	let table = "";	
+	let table = "";
 	for ( var i =5;i<16;i++){
 		arr[i-5] = new Array(3);
 		arr[i-5][0] = i;
 		arr[i-5][1] = i * i;
 		arr[i-5][2] = i * i * i;
-		
+
 	}
 	alert(printArr(arr));
-
-	
-
 }
-
-func_v7()
