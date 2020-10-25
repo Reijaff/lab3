@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="files/js/jquery-3.5.1.js"></script>
+  <script src="files/js/jquery.validate.js"></script>
+  <link rel="stylesheet" href="files/css/style.css">
+  <script>
+    $.validator.setDefaults({
+      submitHandler: function() {
+        alert("submitted!");
+      }
+    });
+
+    $().ready(function() {
+      $("#signupForm").validate({
+        rules: {
+          firstname: "required",
+          lastname: "required",
+          username: {
+            required: true,
+            minlength: 2
+          },
+          phoneNumber: {
+            required: true,
+            length: 10,
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+          confirm_password: {
+            required: true,
+            minlength: 5,
+            equalTo: "#password"
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          agree: "required"
+        },
+        messages: {
+          firstname: "Please enter your firstname",
+          lastname: "Please enter your lastname",
+          username: {
+            required: "Please enter a username",
+            minlength: "Your username must consist of at least 2 characters"
+          },
+          username: {
+            required: "Please enter your phone number",
+            minlength: "Your phone number must consist of 10 numbers"
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+          confirm_password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long",
+            equalTo: "Please enter the same password as above"
+          },
+          email: "Please enter a valid email address",
+          agree: "Please accept our policy",
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div style="background-color: #333;border:2px solid black">
+      <div class=header_div>
+        <p>Welcome to KPI test webpage!</p>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <div style="border:2px solid black">
+      <div class=nav_div>
+        <a class=p_shown href="index.html">Main page</a>
+        <a class=p_hidden href="history.html">History</a>
+        <a class=p_hidden href="student_info.html">Student Info</a>
+        <a class=p_hidden href="login2.html">Login2</a>
+        <a class=p_hidden href="login3.html">Login3</a>
+      </div>
+    </div>
+  </nav>
+  <section>
+    <div style="border:2px solid black">
+      <div class=section_div>
+        <div class=login_header>
+          <p>Registration Form</p>
+        </div>
+        <div style="float:left;width:100%;">
+          <div style="border:2px solid black">
+            <fieldset style="text-align:center">
+              <p>Default submitHandler is set to display an alert into of submitting the form</p>
+              <form class="cmxform" id="signupForm" method="get" action="">
+                <p>
+                  <label for="firstname">Firstname</label>
+                  <input id="firstname" name="firstname" type="text">
+                </p>
+                <p>
+                  <label for="lastname">Lastname</label>
+                  <input id="lastname" name="lastname" type="text">
+                </p>
+                <p>
+                  <label for="username">Username</label>
+                  <input id="username" name="username" type="text">
+                </p>
+                <p>
+                  <label for="phoneNumber">Phone number</label>
+                  <input id="phoneNumber" name="phoneNumber" type="text">
+                </p>
+                <p>
+                  <label for="password">Password</label>
+                  <input id="password" name="password" type="password">
+                </p>
+                <p>
+                  <label for="confirm_password">Confirm password</label>
+                  <input id="confirm_password" name="confirm_password" type="password">
+                </p>
+                <p>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email">
+                </p>
+                <p>
+                  <label for="agree">Please agree to our policy</label>
+                  <input type="checkbox" class="checkbox" id="agree" name="agree">
+                </p>
+                <p>
+                  <input class="submit" type="submit" value="Submit">
+                </p>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="border:2px solid black">
+      <div class=footer_div>
+        <center>
+          <font size="4" color="white" face="Helvetica">
+            <i>Адреса:</i> вулиця Академіка Янгеля, 7а, Київ, 02000
+            <i>Контакти:</i> 204-98-75; 204-93-86; (099)456-85-71<br>
+            <i>Електронна скринька:</i> ipt.kpi.ua@gmail.com
+          </font>
+        </center>
+      </div>
+    </div>
+  </footer>
+  <script src="files/js/script_login3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <link rel="stylesheet" href="files/css/style.css">
+  <meta charset="utf-8">
+  <title>login page</title>
+</head>
+
+<body>
+  <header>
+    <div style="background-color: #333;border:2px solid black">
+      <div class=header_div>
+        <p>Welcome to KPI test webpage!</p>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <div style="border:2px solid black">
+      <div class=nav_div>
+        <a class=p_shown href="index.html">Main page</a>
+        <a class=p_hidden href="history.html">History</a>
+        <a class=p_hidden href="student_info.html">Student Info</a>
+        <a class=p_hidden href="login2.html">Login2</a>
+        <a class=p_hidden href="login3.html">Login3</a>
+      </div>
+    </div>
+  </nav>
+  <section>
+    <div style="border:2px solid black">
+      <div class=section_div>
+        <div class=login_header>
+          <p>Registration Form</p>
+          <p><button id=template type="submit">show template</button></p>
+        </div>
+        <div style="float:left; width: 50%">
+          <div style="border:2px solid black">
+            <div class=login_form>
+              <form onsubmit="return validate_forms()">
+                <fieldset>
+                  <p>
+                    Name :
+                    <input id=name placeholder="Name" type="text" name="name" title="Enter a valid name">
+                  </p>
+                  <p>
+                    Surname :
+                    <input id=surname type="text" placeholder="Surname" name="surname" title="Enter a valid last name">
+                  </p>
+
+                  <p>
+                    Phone number :
+                    <input id=telNumber type="text" placeholder="phone number" name="number">
+                  </p>
+
+                  <p>
+                    Email :
+                    <input id=email type="text" placeholder="Enter Email" name="mail">
+                  </p>
+
+                  <p>
+                    Password :
+                    <input id=password1 type="password" placeholder="Enter Password" name="password">
+                  </p>
+                  <p>
+                    Repeat password :
+                    <input id=password2 type="password" placeholder="Repeat Password" name="phassword-repeat">
+                  </p>
+
+                  <p>When you complete the registration,
+                    you accept<a href="https://www.privacypolicies.com/blog/privacy-policies-vs-terms-conditions/">
+                      Terms and Privacy Policy</a>.
+                  <input type="checkbox" class=checkbox id="agree" name="agree"></p>
+                  <button type=submit class=submit>Register</button></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div style="float:left; width: 50%">
+          <div style="border:2px solid black">
+            <div class=example_form>
+              <p>
+                Name : John
+              </p>
+              <p>
+                Surname : Smith
+              </p>
+
+              <p>
+                Phone number : 1234567899
+              </p>
+
+              <p>
+                Email : pretty.kitty@gmail.com
+              </p>
+
+              <p>
+                Password : paassword12345
+              </p>
+              <p>
+                Repeat password : paassword12345
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="border:2px solid black">
+      <div class=footer_div>
+        <center>
+          <font size="4" color="white" face="Helvetica">
+            <i>Адреса:</i> вулиця Академіка Янгеля, 7а, Київ, 02000</br>
+            <i>Контакти:</i> 204-98-75; 204-93-86; (099)456-85-71<br>
+            <i>Електронна скринька:</i> ipt.kpi.ua@gmail.com
+          </font>
+        </center>
+
+      </div>
+    </div>
+  </footer>
+  <script src="files/js/script_login2.js"></script>
+  <script>
+    timer();
+  </script>
+  <script src="files/js/validate_form.js"></script>
+
+</body>
+
+</html>
