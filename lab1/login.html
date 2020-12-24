@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+   <head>
+      <title>kpi lab1</title>
+   </head>
+   <body style="background-image: url(Repeating-Triangles.svg)">
+      <header style="border:2px solid black">
+         <h1 align="center">Test HTML5 page for lab1</h1>
+      </header>
+      <div style="float:left; width:25%;">
+         <div style="border:2px solid black">
+            <ul>
+               <li><a href="index.html">Main</a></li>
+               <li><a href="history.html">History</a></li>
+               <li><a href="student_info.html">Students Info</a></li>
+               <li><a href="login.html">Login</a></li>
+            </ul>
+         </div>
+      </div>
+      <div style="float:left; width:75%;">
+         <div style="border:2px solid black">
+		 <div align=center>
+		    <form action="login.html" method="get">
+    			<i><b><h1> Register </b></i></h1>
+    			<p><i> Please fill out the form to register on our website </i></p>
+    			
+    			<p><i><label for="last name"><b>Surname :</b></label>
+    			<input type="text" placeholder="Enter a last name" name="last name" required pattern="^[a-zA-Z]+$" title="Enter a valid last name">
+    			
+    			<p><i><label for="first name"><b>Name :</b></label>
+    			<input type="text" placeholder="Enter a name" name="first name" required pattern="^[a-zA-Z]+$$" title="Enter a valid name">
+
+    			<p><i><label for="number"><b>Number :</b></label>
+    			<input type="text" placeholder="Enter the phone number please" name="number" required pattern="[0-9]{12,}" title="Enter 12 characters">
+
+    			<p><label for="mail"><strong>Email :</strong></label>
+    			<input type="email" placeholder="Enter Email" name="mail" required> 
+
+    			<p><i><label for="password"><strong>Password :</strong></label>
+    			<input type="password" placeholder="Enter Password" name="psw" required>
+
+    			<p><i><label for="psw-repeat"><strong>Repeat Password :</strong></label>
+    			<input type="password" placeholder="Repeat Password please" name="pssw-repeat" required>
+    			<hr>
+    			<p><i>When you complete the registration, you accept<a href="https://www.privacypolicies.com/blog/privacy-policies-vs-terms-conditions/#:~:text=Privacy%20Policies%20and%20Terms%20and%20Conditions%20%28T%26C%29%20agreements,T%26C%20agreement%20exists%20to%20protect%20you%2C%20the%20company."> Terms and Privacy Policy</a>.</p>
+    			<button type="submit">Register</button>
+		    </form>
+		 </div>
+         </div>
+      </div>
+   </body>
+</html>
+
+

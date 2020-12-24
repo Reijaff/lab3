@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="mystyle.css">
+  <meta charset="utf-8">
+  <title>kpi lab1</title>
+</head>
+
+<body style="background-image: url(Repeating-Triangles.svg)">
+  <header class=navbar>
+    <div class=menu_placeholder>
+      <a href="index.html">Main page</a>
+      <a href="history.html">History</a>
+      <a href="student_info.html">Student Info</a>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
+  <div class=main>
+    <div class=data>
+      <div id=reg_form>
+        <form action="login.html" method="get">
+
+          <h1> Register Form </h1>
+          <a href="#dialog">example</a>
+          <div id=dialog>
+            <p>Example:<br>John<br>Smith<br>972564981<br>post@gmail.com<br>password</p>
+            <a href="#">Закрити</a>
+          </div>
+          <p><b> Please fill out the form to register on our website </b></p>
+
+          <p>
+            <input type="text" placeholder="Name" name="first name" required pattern="^[a-zA-Z]+$$" title="Enter a valid name">
+            <input type="text" placeholder="Surname" name="last name" required pattern="^[a-zA-Z]+$" title="Enter a valid last name">
+          </p>
+
+          <p>
+            <input size=30 type="text" placeholder="Enter the phone number" name="number" required pattern="[0-9]{12,}" title="Enter 12 characters">
+          </p>
+
+          <p>
+            <input size=40 type="email" placeholder="Enter Email" name="mail" required>
+          </p>
+
+          <p>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Repeat Password" name="pssw-repeat" required>
+          </p>
+
+          <hr>
+          <p>When you complete the registration, you accept<a
+              href="https://www.privacypolicies.com/blog/privacy-policies-vs-terms-conditions/#:~:text=Privacy%20Policies%20and%20Terms%20and%20Conditions%20%28T%26C%29%20agreements,T%26C%20agreement%20exists%20to%20protect%20you%2C%20the%20company.">
+              Terms and Privacy Policy</a>.</p>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

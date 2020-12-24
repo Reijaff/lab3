@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="files/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div style="background-color: #333;border:2px solid black">
+      <div class=header_div>
+        <p>Welcome to KPI test webpage!</p>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <div style="border:2px solid black">
+      <div class=nav_div>
+        <a class=p_shown href="index.html">Main page</a>
+        <a class=p_hidden href="history.html">History</a>
+        <a class=p_hidden href="student_info.html">Student Info</a>
+        <a class=p_hidden href="login_jquery.html">login_jquery</a>
+        <a class=p_hidden href="login_js.html">login_js</a>
+      </div>
+    </div>
+  </nav>
+  <section>
+    <div style="border:2px solid black">
+      <div class=section_div>
+        <div class=login_header>
+          <p>Registration Form</p>
+        </div>
+        <div style="float:left;width:100%;">
+          <div style="border:2px solid black">
+            <fieldset style="text-align:center">
+              <form class="cmxform" id="signupForm" method="post" action="">
+                <p>
+                  <label for="firstname">Firstname</label>
+                  <input id="firstname" name="firstname" type="text">
+                </p>
+                <p>
+                  <label for="lastname">Lastname</label>
+                  <input id="lastname" name="lastname" type="text">
+                </p>
+                <p>
+                  <label for="username">Username</label>
+                  <input id="username" name="username" type="text">
+                </p>
+                <p>
+                  <label for="phone">Phone number</label>
+                  <input id="phone" name="phone" type="text">
+                </p>
+                <p>
+                  <label for="password">Password</label>
+                  <input id="password" name="password" type="password">
+                </p>
+                <p>
+                  <label for="confirm_password">Confirm password</label>
+                  <input id="confirm_password" name="confirm_password" type="password">
+                </p>
+                <p>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email">
+                </p>
+                <p>
+                  <label for="agree">Please agree to our policy</label>
+                  <input type="checkbox" class="checkbox" id="agree" name="agree">
+                </p>
+                <p>
+                  <input class="submit" type="submit" onclick="ajax_post();" value="Submit" >
+                </p>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="border:2px solid black">
+      <div class=footer_div>
+        <center>
+          <font size="4" color="white" face="Helvetica">
+            <i>Адреса:</i> вулиця Академіка Янгеля, 7а, Київ, 02000
+            <i>Контакти:</i> 204-98-75; 204-93-86; (099)456-85-71<br>
+            <i>Електронна скринька:</i> ipt.kpi.ua@gmail.com
+          </font>
+        </center>
+      </div>
+    </div>
+  </footer>
+  <script>
+
+function ajax_post() {
+
+    var xhr = new XMLHttpRequest();
+
+    var lastname = document.getElementById("lastname").value;
+    var firstname = document.getElementById("firstname").value;
+    var username = document.getElementById("username").value;
+
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var confirm_password = document.getElementById("confirm_password").value;
+    var agree = document.getElementsByClassName("checkbox")[0].checked;
+
+
+    xhr.open("POST", "files/php/ajax.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var data = JSON.parse(xhr.responseText);
+
+            if (data['result'] == 'success') {
+                temp_msg = "Registration successful !" + '\n'
+			+ "Lastname: " + lastname + '\n'
+                    + "Firstname: " + firstname + '\n'
+                    + "Username: " + username + '\n'
+
+                    + "Phone number: " + phone + '\n'
+                    + "Email address: " + email + '\n'
+                    + "Password: " + password + '\n';
+
+		alert(temp_msg);
+            }
+            else {
+		temp_msg = ''
+                for (var Errors in data["text_error"]) {
+                    temp_msg += data["text_error"][Errors] + '\n';
+                }
+		alert(temp_msg);
+
+            }
+        }
+    }
+    xhr.send("lastname=" + lastname
+        + "&firstname=" + firstname
+        + "&username=" + username
+        + "&agree=" + agree 
+        + "&phone=" + phone
+        + "&email=" + email
+        + "&password=" + password
+        + "&confirm_password=" + confirm_password
+    );
+
+}
+
+
+  </script>
+  <script src="files/js/menu.js"></script>
+</body>
+
+</html>
