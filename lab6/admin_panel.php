@@ -1,3 +1,24 @@
+<?php
+$id = '';
+if (isset($_POST["remove_row"])) {
+	if (empty($_POST["id"])) {
+		$idErr = "ID is required";
+	} else {
+		$id= test_input($_POST["id"]);
+		if (!preg_match("/[0-9]+/",$id)) {
+			$idErr = "ID should be a number";
+		}
+	}
+}
+
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -45,6 +66,13 @@
 		</p>
 		<p>
 		<input type="submit" name="delete_table" id="delete_table" value="Delete table">
+		</p>
+		<p>
+		<input type="submit" name="remove_row" id="remove_row" value="Remove record ">
+		<label for="id">№</label>
+		<input style="width:20px" id="id" name="id" type="text" value="<?php echo $id;?>">
+		<span class="warr"> <?php echo $idErr; ?></span>
+		</p>
 		</p>
 		<p>
 		<input type="submit" name="show_all" id="show_all" value="Show all records">
@@ -110,6 +138,22 @@ if (isset($_POST["delete_table"])){
 		echo "Table deleted successfully </br>";
 	}else{
 		echo "error deleting table </br>";
+	}
+
+	echo "</div>";
+}
+
+if (isset($_POST["remove_row"])){
+
+	echo "<div style='text-align:center;border: 3px solid green;'>";
+	$conn = mysqli_connect("localhost","mydbuser","tBQZ8UDPsim3MLMm","myDB");	
+	if (!$conn)
+		die("Connection failed : ".mysqli_connect_error());
+	$sql = "DELETE FROM Users WHERE ID = $id";
+	if (mysqli_query($conn, $sql)){
+		echo "Record $id deleted successfully </br>";
+	}else{
+		echo "error deleting record </br>";
 	}
 
 	echo "</div>";

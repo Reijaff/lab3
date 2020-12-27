@@ -1,7 +1,47 @@
 <?php
-$firstname = $lastname = $email = $password = $confirm_password = "";
+$firstname = $lastname = $email = $password = $confirm_password = $birthdate = "";
 $flag = false;
+$user = null;
 $error_con = false;
+class User {
+	protected $firstname;
+	protected $lastname;
+	protected $birthdate;
+	protected $password;
+	protected $email;
+	public $age;
+
+	function __construct($firstname, $lastname, $birthdate, $password, $email) {
+		$this->firstname = $firstname;
+		$this->lastname = $lastname;
+		$this->birthdate = $birthdate;
+		$this->password = $password;
+		$this->email = $email;
+
+		date_default_timezone_set('Europe/Helsinki');
+		$current_date = time();
+		$birth_date = strtotime($this->birthdate);
+		$this->age = floor(($current_date - $birth_date)/(60*60*24*365.2421896));
+	}
+
+	function getName() {
+		echo "Name : $this->firstname $this->lastname </br>";
+	}
+
+	function getEmail() {
+		echo "Email : $this->email</br>";
+	}
+
+	function getPassword() {
+		echo "Password : $this->password </br>";
+	}
+
+	function getAge() {
+		echo "Age: $this->age years </br>";
+	}
+
+
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else {
 		$firstname = test_input($_POST["firstname"]);
 		if (!preg_match("/[a-zA-Z]{3,30}$/",$firstname)) {
-			$nameErr = "Name should not contain number or special characters.";
+			$firstnameErr = "Name should not contain number or special characters.";
 			$flag = false;
 		}
 	}
@@ -65,12 +105,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$confirm_passwordErr = "Check your password input, passwords do not match!";
 		$flag = false;
 	}
+
+	if (empty($_POST["birthdate"])) {
+		$birthdateErr = "Birthdate is required";
+		$flag = false;
+	} else {
+		$birthdate = test_input($_POST["birthdate"]);
+		if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$birthdate)) {
+			$birthdateErr = "Date format : Y-m-d ( 1111-01-01 ) !";
+			$flag = false;
+		}
+	}
+
+
 	if ( $flag == true ){
 		$conn = mysqli_connect("localhost","mydbuser","tBQZ8UDPsim3MLMm","myDB");	
 		if (!$conn)
 			die("Connection failed : ".mysqli_connect_error());
 
-		$sql = "INSERT INTO Users(Firstname,Lastname,Password,Email) VALUES ('$firstname','$lastname','$password','$email')";
+		$user = new User($firstname, $lastname, $birthdate, $password, $email);
+
+		$sql = "INSERT INTO Users(Firstname,Lastname,Password,Email,Age) VALUES ('$firstname','$lastname','$password','$email','$user->age')";
 
 		if (!mysqli_query($conn, $sql)){
 			$error_con = true;
@@ -136,7 +191,13 @@ function test_input($data) {
 		  <input id="lastname" name="lastname" type="text" value="<?php echo $lastname;?>">
 		  <span class="warr"> <?php echo $lastnameErr; ?></span>
 		</p>
+
+
 		<p>
+		  <label for="birthdate">Birthdate</label>
+                  <input id="birthdate" name="birthdate" type="text" value="<?php echo $birthdate;?>">
+                  <span class="warr"> <?php echo $birthdateErr; ?></span>
+		</p>
 		  <label for="password">Password</label>
 		  <input id="password" name="password" type="password" value="<?php echo $password;?>">
 		  <span class="warr"><?php echo $passwordErr; ?></span>
@@ -166,10 +227,10 @@ function test_input($data) {
 			if ($flag){
 				echo "<div style='text-align:center;border: 3px solid green;'>";
 				echo "<h3>Registration successful!</h3>";
-				echo "First name : ".$firstname."</br>";
-				echo "Last name : ".$lastname."</br>";
-				echo "Password : ".$password."</br>";
-				echo "Email address : ".$email."</br>";
+				echo $user->getName();
+				echo $user->getEmail();
+				echo $user->getPassword();
+				echo $user->getAge();
 				echo "</div>";
 			}
 		?>
